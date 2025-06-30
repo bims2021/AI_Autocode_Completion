@@ -1,0 +1,9 @@
+# Node.js / VS Code Extension Specific
+ai_code_autocompletion_extension/node_modules/
+ai_code_autocompletion_extension/dist/         # Will be created when you build TypeScript
+ai_code_autocompletion_extension/out/          # Another common compiled output folder
+ai_code_autocompletion_extension/*.vsix        # VS Code extension package
+ai_code_autocompletion_extension/npm-debug.log*
+ai_code_autocompletion_extension/yarn-error.log*
+ai_code_autocompletion_extension/.vscode-test/ # For extension testing environment
+
