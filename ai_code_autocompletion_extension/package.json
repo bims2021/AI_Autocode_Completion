@@ -1,0 +1,118 @@
+{
+  "name": "ai-code-autocompletion",
+  "displayName": "AI Code Autocompletion",
+  "description": "AI-powered code completion using GPT-2 and CodeBERT models",
+  "version": "0.1.0",
+  "publisher": "your-publisher-name",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Machine Learning",
+    "Snippets"
+  ],
+  "keywords": [
+    "ai",
+    "autocompletion",
+    "code-completion",
+    "gpt",
+    "machine-learning"
+  ],
+  "activationEvents": [
+    "onLanguage:python",
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:java",
+    "onLanguage:go",
+    "onLanguage:rust"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "AI Code Autocompletion",
+      "properties": {
+        "aiCodeCompletion.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable AI code completion"
+        },
+        "aiCodeCompletion.apiUrl": {
+          "type": "string",
+          "default": "http://localhost:8000",
+          "description": "Backend API URL for AI completions"
+        },
+        "aiCodeCompletion.maxSuggestions": {
+          "type": "number",
+          "default": 3,
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Maximum number of suggestions to show"
+        },
+        "aiCodeCompletion.temperature": {
+          "type": "number",
+          "default": 0.7,
+          "minimum": 0.1,
+          "maximum": 2.0,
+          "description": "Temperature for AI model (creativity level)"
+        },
+        "aiCodeCompletion.maxContextLines": {
+          "type": "number",
+          "default": 50,
+          "minimum": 10,
+          "maximum": 100,
+          "description": "Maximum number of context lines to send"
+        },
+        "aiCodeCompletion.autoTrigger": {
+          "type": "boolean",
+          "default": true,
+          "description": "Auto-trigger completions while typing"
+        },
+        "aiCodeCompletion.model": {
+          "type": "string",
+          "enum": ["gpt2", "codebert", "auto"],
+          "default": "auto",
+          "description": "AI model to use for completions"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "aiCodeCompletion.toggle",
+        "title": "Toggle AI Code Completion",
+        "category": "AI Completion"
+      },
+      {
+        "command": "aiCodeCompletion.clearCache",
+        "title": "Clear Completion Cache",
+        "category": "AI Completion"
+      },
+      {
+        "command": "aiCodeCompletion.showStats",
+        "title": "Show Completion Statistics",
+        "category": "AI Completion"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "aiCodeCompletion.toggle",
+        "key": "ctrl+alt+a",
+        "mac": "cmd+alt+a"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "crypto": "^1.0.1"
+  }
+}
