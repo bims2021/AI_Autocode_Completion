@@ -7,3 +7,46 @@ ai_code_autocompletion_extension/npm-debug.log*
 ai_code_autocompletion_extension/yarn-error.log*
 ai_code_autocompletion_extension/.vscode-test/ # For extension testing environment
 
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+*.env
+.vscode/
+
+# Conda environments
+*.conda
+*.tar.bz2
+envs/
+.conda/
+.env # If you use .env for environment variables in the project root
+
+
+autocode_env/ # Your Conda environment folder
+ai_model/model_weights/ # If you store model weights in a subfolder like this
+ai_model/*.pth # Example for PyTorch weights
+ai_model/*.pt # Another example for PyTorch weights
+ai_model/*.safetensors # Common for Hugging Face models
+ai_model/*.h5 # Example for Keras/TensorFlow models
+ai_model/*.keras # Example for Keras 3 models
+.bin # Example for some model binaries
+
+
+
+
+# VSCode specific 
+.vscode/
+# Add this if you have a specific file where your VS Code interpreter is set
+.vscode/settings.json
+
+# Logs
+*.log
+logs/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
