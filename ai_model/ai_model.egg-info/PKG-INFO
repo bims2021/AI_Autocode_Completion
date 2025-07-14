@@ -1,0 +1,280 @@
+Metadata-Version: 2.4
+Name: ai-model
+Version: 1.0.0
+Summary: AI Model Package for Code Completion and Analysis
+Home-page: https://github.com/your-org/ai-model
+Author: AI Model Team
+Author-email: ai-model@company.com
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: torch>=1.9.0
+Requires-Dist: transformers>=4.15.0
+Requires-Dist: tokenizers>=0.10.0
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: scipy>=1.7.0
+Requires-Dist: fastapi>=0.70.0
+Requires-Dist: uvicorn>=0.15.0
+Requires-Dist: pydantic>=1.8.0
+Requires-Dist: pandas>=1.3.0
+Requires-Dist: scikit-learn>=1.0.0
+Requires-Dist: click>=8.0.0
+Requires-Dist: tqdm>=4.62.0
+Requires-Dist: colorama>=0.4.4
+Requires-Dist: python-dateutil>=2.8.0
+Requires-Dist: pytest>=6.2.0
+Requires-Dist: pytest-asyncio>=0.15.0
+Requires-Dist: pytest-cov>=2.12.0
+Requires-Dist: black>=21.0.0
+Requires-Dist: flake8>=3.9.0
+Requires-Dist: mypy>=0.910
+Provides-Extra: dev
+Requires-Dist: pytest>=6.2.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.15.0; extra == "dev"
+Requires-Dist: pytest-cov>=2.12.0; extra == "dev"
+Requires-Dist: black>=21.0.0; extra == "dev"
+Requires-Dist: flake8>=3.9.0; extra == "dev"
+Requires-Dist: mypy>=0.910; extra == "dev"
+Provides-Extra: server
+Requires-Dist: fastapi>=0.70.0; extra == "server"
+Requires-Dist: uvicorn>=0.15.0; extra == "server"
+Provides-Extra: monitoring
+Requires-Dist: psutil>=5.8.0; extra == "monitoring"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# AI Model Package
+
+AI Model Package for Code Completion and Analysis - A comprehensive solution for AI-powered code assistance.
+
+## Features
+
+- **Code Completion**: Intelligent code completion using pre-trained models
+- **Code Analysis**: Analyze code structure, complexity, and metadata
+- **Multiple Models**: Support for CodeGPT, CodeBERT, and custom models
+- **REST API**: HTTP server for integration with external tools
+- **CLI Interface**: Command-line tools for batch processing
+- **Interactive Mode**: REPL-style interface for experimentation
+- **Extensible**: Easy to add new models and languages
+
+## Installation
+
+### From Source
+
+```bash
+git clone https://github.com/your-org/ai-model.git
+cd ai-model
+pip install -e .
+```
+
+### Using pip
+
+```bash
+pip install ai-model
+```
+
+### Using Docker
+
+```bash
+docker build -t ai-model .
+docker run -p 8000:8000 ai-model
+```
+
+## Quick Start
+
+### Python API
+
+```python
+from ai_model import AIModel, complete_code
+
+# Quick completion
+result = complete_code("def fibonacci(n):", language="python")
+print(result)
+
+# Full API
+model = AIModel("codegpt")
+model.load_model()
+
+completion = model.complete_code(
+    code="def fibonacci(n):",
+    language="python",
+    max_new_tokens=100
+)
+print(completion['completion'])
+```
+
+### CLI Usage
+
+```bash
+# Complete code
+ai-model complete "def fibonacci(n):" --language python
+
+# Analyze code
+ai-model analyze "def fibonacci(n): return n if n <= 1 else fibonacci(n-1) + fibonacci(n-2)" --language python
+
+# Interactive mode
+ai-model interactive --model codegpt
+
+# Start server
+ai-model-server --host 0.0.0.0 --port 8000
+```
+
+### HTTP API
+
+```bash
+# Start server
+ai-model-server
+
+# Complete code
+curl -X POST "http://localhost:8000/complete" \
+  -H "Content-Type: application/json" \
+  -d '{"code": "def fibonacci(n):", "language": "python"}'
+
+# Analyze code
+curl -X POST "http://localhost:8000/analyze" \
+  -H "Content-Type: application/json" \
+  -d '{"code": "def fibonacci(n): pass", "language": "python"}'
+```
+
+## Configuration
+
+### Configuration File
+
+Create `ai_model_config.yaml`:
+
+```yaml
+default_model: codegpt
+
+models:
+  codegpt:
+    model_path: microsoft/CodeGPT-small-py
+    tokenizer_path: microsoft/CodeGPT-small-py
+    max_length: 1024
+    supported_languages: [python, javascript, java]
+    generation_config:
+      max_new_tokens: 100
+      temperature: 0.7
+      top_p: 0.9
+
+server:
+  host: 0.0.0.0
+  port: 8000
+  log_level: INFO
+
+cache:
+  enabled: true
+  max_size: 1000
+  ttl: 3600
+```
+
+### Environment Variables
+
+```bash
+export AI_MODEL_SERVER_HOST=0.0.0.0
+export AI_MODEL_SERVER_PORT=8000
+export AI_MODEL_DEFAULT=codegpt
+export AI_MODEL_LOG_LEVEL=INFO
+export AI_MODEL_CACHE_ENABLED=true
+```
+
+## Supported Models
+
+- **CodeGPT**: General-purpose code completion
+- **CodeBERT**: Code understanding and analysis
+- **Custom Models**: Add your own Hugging Face models
+
+## Supported Languages
+
+- Python
+- JavaScript/TypeScript
+- Java
+- C/C++
+- C#
+- PHP
+- Ruby
+- Go
+- Rust
+- Swift
+- Kotlin
+- Scala
+- HTML/CSS
+- SQL
+- Bash/PowerShell
+
+## Development
+
+### Setup Development Environment
+
+```bash
+git clone https://github.com/your-org/ai-model.git
+cd ai-model
+pip install -e ".[dev]"
+```
+
+### Running Tests
+
+```bash
+pytest tests/
+```
+
+### Code Quality
+
+```bash
+black ai_model/
+flake8 ai_model/
+mypy ai_model/
+```
+
+## API Reference
+
+### Python API
+
+- `AIModel(model_name, config)` - Main model class
+- `load_model(model_name, **kwargs)` - Load model instance
+- `complete_code(code, language, **kwargs)` - Quick completion
+- `analyze_code(code, language, **kwargs)` - Quick analysis
+
+### HTTP API
+
+- `POST /complete` - Code completion
+- `POST /analyze` - Code analysis
+- `POST /models/load` - Load model
+- `GET /models` - List models
+- `GET /health` - Health check
+
+### CLI Commands
+
+- `ai-model complete` - Complete code
+- `ai-model analyze` - Analyze code
+- `ai-model interactive` - Interactive mode
+- `ai-model list` - List models
+- `ai-model info` - Model information
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests
+5. Submit a pull request
+
+## License
+
+MIT License - see LICENSE file for details.

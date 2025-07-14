@@ -1,0 +1,8 @@
+README.md
+setup.py
+ai_model.egg-info/PKG-INFO
+ai_model.egg-info/SOURCES.txt
+ai_model.egg-info/dependency_links.txt
+ai_model.egg-info/entry_points.txt
+ai_model.egg-info/requires.txt
+ai_model.egg-info/top_level.txt
